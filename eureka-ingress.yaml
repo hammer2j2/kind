@@ -1,0 +1,36 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: eureka-ing
+  namespace: eureka
+spec:
+  rules:
+  - host: eureka1
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: eureka-svc-1
+            port:
+              number: 8080
+  - host: eureka2
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: eureka-svc-2
+            port:
+              number: 8080
+  - http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: eureka-svc-1
+            port:
+              number: 8080

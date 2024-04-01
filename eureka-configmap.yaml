@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+
+metadata:
+  name: eureka-cm
+  namespace: eureka
+
+data:
+  clusterList-1: "http://localhost:8080/eureka,http://eureka-svc-2.eureka.svc.cluster.local:8080/eureka"
+  clusterList-2: "http://localhost:8080/eureka,http://eureka-svc-1.eureka.svc.cluster.local:8080/eureka"

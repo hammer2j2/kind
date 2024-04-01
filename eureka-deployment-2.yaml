@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: eureka
+  name: eureka-deployment-2
+  labels:
+    app: eureka-2
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: eureka-2
+  template:
+    metadata:
+      labels:
+        app: eureka-2
+    spec:
+      containers:
+      - name: eureka
+        image: hammer2j2/eureka:v0.0.4
+        ports:
+        - containerPort: 8080
+        env:
+          - name: EUREKA_CLUSTER_LIST
+            valueFrom:
+              configMapKeyRef:
+                name: eureka-cm
+                key: clusterList-2

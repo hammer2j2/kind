@@ -1,0 +1,12 @@
+kind: Service
+apiVersion: v1
+metadata:
+  namespace: eureka
+  name: eureka-svc-1
+spec:
+  selector:
+    app: eureka-1
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080

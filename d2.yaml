@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: alpine-deployment
+  labels:
+    app: alpine
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: alpine
+  template:
+    metadata:
+      labels:
+        app: alpine
+    spec:
+      containers:
+      - name: alpine
+        image: alpine:latest
+        command: 
+          - "/bin/sh"
+        args:
+          - "-c"
+          - "apk add socat; /usr/bin/socat - TCP-LISTEN:8080,fork,reuseaddr; echo Goodbye `date`"
+        ports:
+        - containerPort: 8080
